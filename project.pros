@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "4118F_Pinnacle_v1.3",
+    "project_name": "4118F_Pinnacle",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -635,9 +635,9 @@
       }
     },
     "upload_options": {
-      "description": "https://github.com/jasonsimonhtx/4118F_Pinnacle_v1.3/",
-      "icon": "X",
-      "slot": 3
+      "description": " ",
+      "icon": "planet",
+      "slot": 1
     },
     "use_early_access": false
   }

@@ -4,7 +4,7 @@
 </p>
 <hr>
 
-This is the main software for 4118F Surge, a competitive robotics team. This program handles the initialization, operator control, and autonomous control of our most recent robot (iteration v1.3, as of writing).
+This is the main software for 4118F Surge, a RECF Achieve competitive student robotics team. This program handles the initialization, operator control, and autonomous control of our most recent robot (iteration v1.3, as of writing).
 
 ## License
 This project is licensed under the MIT license. Check [LICENSE](https://github.com/jasonsimonhtx/4118F_Pinnacle_v1.3/blob/main/LICENSE) for more details.
