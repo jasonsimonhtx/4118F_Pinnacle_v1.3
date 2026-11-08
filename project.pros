@@ -636,8 +636,8 @@
     },
     "upload_options": {
       "description": " ",
-      "icon": "planet",
-      "slot": 1
+      "icon": "X",
+      "slot": 2
     },
     "use_early_access": false
   }
