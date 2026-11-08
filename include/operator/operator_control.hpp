@@ -1,0 +1,6 @@
+#ifndef _OPERATOR_OPERATOR_CONTROL_HPP_
+#define _OPERATOR_OPERATOR_CONTROL_HPP_
+
+#include "main.h"
+
+#endif // _OPERATOR_OPERATOR_CONTROL_HPP_

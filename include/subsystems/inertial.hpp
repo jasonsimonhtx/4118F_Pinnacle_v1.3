@@ -1,0 +1,6 @@
+#ifndef _SUBSYSTEMS_INERTIAL_HPP_
+#define _SUBSYSTEMS_INERTIAL_HPP_
+
+#include "main.h"
+
+#endif // _SUBSYSTEMS_INERTIAL_HPP_

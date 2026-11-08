@@ -1,0 +1,6 @@
+#ifndef _SUBSYSTEMS_SUBSYSTEM_HPP_
+#define _SUBSYSTEMS_SUBSYSTEM_HPP_
+
+#include "main.h"
+
+#endif // _SUBSYSTEMS_SUBSYSTEM_HPP_

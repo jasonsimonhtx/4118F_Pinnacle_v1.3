@@ -1,90 +1,76 @@
-/**
- * \file main.h
- *
- * Contains common definitions and header files used throughout your PROS
- * project.
- *
- * \copyright Copyright (c) 2017-2023, Purdue University ACM SIGBots.
- * All rights reserved.
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
-
 #ifndef _PROS_MAIN_H_
 #define _PROS_MAIN_H_
 
-/**
- * If defined, some commonly used enums will have preprocessor macros which give
- * a shorter, more convenient naming pattern. If this isn't desired, simply
- * comment the following line out.
- *
- * For instance, E_CONTROLLER_MASTER has a shorter name: CONTROLLER_MASTER.
- * E_CONTROLLER_MASTER is pedantically correct within the PROS styleguide, but
- * not convenient for most student programmers.
- */
-#define PROS_USE_SIMPLE_NAMES
+#if defined(__cplusplus) && __cplusplus < 201703L
+    #error "This stack requires at least C++17"
+#endif  // __cplusplus && __cplusplus < 201703L
 
-/**
- * If defined, C++ literals will be available for use. All literals are in the
- * pros::literals namespace.
- *
- * For instance, you can do `4_mtr = 50` to set motor 4's target velocity to 50
- */
-#define PROS_USE_LITERALS
+#ifdef __arm__
+    #pragma GCC target("cpu=cortex-a9,fpu=neon-vfpv3,float-abi=hard")
+#endif
+
+#ifdef __GNUC__
+    #pragma GCC diagnostic error "-Wuninitialized"
+    #pragma GCC diagnostic error "-Wreturn-type"
+    #pragma GCC diagnostic error "-Wfloat-equal"
+    #pragma GCC poison strcpy strcat sprintf
+#endif  // __GNUC__
+
+#ifdef __cplusplus
+    extern "C" {
+#endif  // __cplusplus
 
 #include "api.h"
-#include "devices.hpp"
-#include "controls.hpp"
-#include "autonomous.hpp"
-#include "operator.hpp"
+#include "lemlib/api.hpp"
+#include "liblvgl/lvgl.h"
+
 #include "utility.hpp"
-#include "subsystems/liftController.hpp"
-#include "subsystems/pistonController.hpp"
-#include "subsystems/scaledIMU.hpp"
 
-/**
- * You should add more #includes here
- */
-//#include "okapi/api.hpp"
+#include "robot/parameters.hpp"  // Must be placed first
+#include "robot/hardware.hpp"
 
-extern RouteID selected_route;
+#include "managers/autonomous_manager.hpp"
+#include "managers/lifecycle_manager.hpp"
+#include "managers/subsystem_manager.hpp"
+#include "managers/ui_manager.hpp"
 
-/**
- * If you find doing pros::Motor() to be tedious and you'd prefer just to do
- * Motor, you can use the namespace with the following commented out line.
- *
- * IMPORTANT: Only the okapi or pros namespace may be used, not both
- * concurrently! The okapi namespace will export all symbols inside the pros
- * namespace.
- */
-// using namespace pros;
-// using namespace pros::literals;
-// using namespace okapi;
+#include "subsystems/claw.hpp"
+#include "subsystems/inertial.hpp"
+#include "subsystems/lift.hpp"
+#include "subsystems/subsystem.hpp"
 
-/**
- * Prototypes for the competition control tasks are redefined here to ensure
- * that they can be called from user code (i.e. calling autonomous from a
- * button press in opcontrol() for testing purposes).
- */
-#ifdef __cplusplus
-extern "C" {
-#endif
+
+#include "autonomous/autonomous_utility.hpp"
+#include "autonomous/routine.hpp"
+#include "autonomous/routines/15_sec_stack_right.hpp"
+
+#include "operator/input_map.hpp"
+#include "operator/operator_control.hpp"
+
+#include "ui/brain_screen.hpp"
+#include "ui/controller_screen.hpp"
+#include "ui/ui_utility.hpp"
+
 void autonomous(void);
-void initialize(void);
-void disabled(void);
 void competition_initialize(void);
+void disabled(void);
+void initialize(void);
 void opcontrol(void);
-#ifdef __cplusplus
-}
-#endif
+
+/**
+ * @brief Forces inline code expansion to eliminate function-call overhead 
+ * on tight, high-frequency execution streams (e.g., vector math, filtering).
+ */
+#define HOT_PATH __attribute__((always_inline)) inline
+
+/**
+ * @brief Forces individual functions to compile at extreme speed optimization loops (-O3)
+ * regardless of the global project toolchain configuration flags (-O2 or -Os).
+ */
+#define FORCE_SPEED_OPTIMIZE __attribute__((optimize("O3")))
 
 #ifdef __cplusplus
-/**
- * You can add C++-only headers here
- */
-//#include <iostream>
+}  // extern "C"
 #endif
 
 #endif  // _PROS_MAIN_H_
