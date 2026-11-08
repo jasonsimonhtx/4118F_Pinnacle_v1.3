@@ -1,3 +1,3 @@
 #pragma once
 
-[[noreturn]] void startOperatorControl();
+void startOperatorControl();

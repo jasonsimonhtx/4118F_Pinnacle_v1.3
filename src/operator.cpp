@@ -41,8 +41,8 @@ namespace {
 /**
  * @brief Custom function to initiate operator control.
  */
-[[noreturn]] void startOperatorControl() {
-    while (true) {
+void startOperatorControl() {
+    while (!pros::competition::is_disabled() && !pros::competition::is_autonomous()) {
         // Update start time
         uint32_t startTime = pros::millis();
 

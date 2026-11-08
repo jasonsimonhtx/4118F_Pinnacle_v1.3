@@ -36,13 +36,16 @@ void competition_initialize() {
  * @brief Runs when the robot enters autonomous control.
  */
 void autonomous() {
-	controller.rumble("-");
-	pros::Task(routes[current_route_id.load()].func, "comp_autonomous");
+	controller.rumble(".-.");
+	const RouteID route_id = current_route_id.load();
+	if (route_id < routes.size()) {
+		routes[route_id].func();
+	}
 }
 
 /**
  * @brief Runs when the robot enters operator control.
  */
 void opcontrol() {
-    pros::Task(startOperatorControl, "comp_opcontrol");
+	startOperatorControl();
 }
