@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "league_v2",
+    "project_name": "4118F_Pinnacle_v1.3",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -635,9 +635,9 @@
       }
     },
     "upload_options": {
-      "description": "4118F Jason Simon Uploaded 10/25/2026",
+      "description": "4118F Jason Simon Uploaded 11/07/2026",
       "icon": "X",
-      "slot": 1
+      "slot": 3
     },
     "use_early_access": false
   }
